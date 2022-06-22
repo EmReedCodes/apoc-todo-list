@@ -16,12 +16,13 @@
 
     <div class="todo">
 
-        <form action="" method="post" class="todo-header"> 
+        <form action="" method="POST" class="todo-header"> 
         <input type="text" name="content">
         <button type="submit"><span class="fas fa-plus"></span></button>    
         </form>
 
         <ul class="todo-list">
+            <!-- todoTask or todoTasks ? -->
             <% todoTasks.forEach(details => { %>
                 <% if (details._id == idTask) { %>
                 <li class="todo-list-item">
@@ -36,7 +37,7 @@
                 <li class="todo-list-item">
                     <div class="todo-list-item-name"><%= details.content %></div>
 
-                    <a href="/edit/<%= details._id %>" class="edit"><span ckass="fas-fa-times"></span>
+                    <a href="/edit/<%= details._id %>" class="edit"><span class="fas-fa-times"></span>
                     </a>
 
                     <a href="/remove/<%= details._id %>" class="remove"> <span class="fas-fa-times"></span>
