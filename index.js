@@ -30,7 +30,7 @@ app.get('/', (req, res) => {
     
 })
 
-app.post('/',async (req, res) => {
+app.post('/', async (req, res) => {
     const todoTask = new TodoTask({
         content: req.body.content
     });
@@ -41,5 +41,27 @@ app.post('/',async (req, res) => {
         res.redirect('/');
     }
 });
+
+//UPDATE *something not working here*
+
+app
+.route('/edit/:id')
+.get((req, res) => {
+    const id = req.params.id;
+    TodoTask.find({}, (err, tasks) => {
+        res.render('todoEdit.ejs', {todoTasks: tasks, idTask: id});
+    });
+})
+.post((req, res) => {
+    const id = req.params.id;
+
+    TodoTask.findByIdAndUpdate(id, {content: req.body.content}, err => {
+        if(err) return res.send(500, err);
+        res.redirect('/');
+    });
+});
+
+//
+
 
 
